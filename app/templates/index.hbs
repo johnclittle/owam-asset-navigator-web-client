@@ -1,4 +1,11 @@
 <div class="row">
+	<div class="col-xs-12">
+		<ul class="breadcrumb">
+		    <li class="active"><a href="#">Home</a></li>
+		</ul>
+	</div>
+</div>
+<div class="row">
 	<div class="col-xs-12 text-center">
 		<h1>Root Assets</h1>
 	</div>
@@ -22,7 +29,7 @@
 					<tbody>
 						<tr>
 							<td>
-								{{#link-to "asset" asset.ASSET_ID }}{{asset.ASSET_ID}}{{/link-to}}
+								{{#link-to "asset" asset.ASSET_ID }}{{asset.ASSET_RECORD_TYPE}}/{{asset.ASSET_ID}}{{/link-to}}
 							</td>
 							<td>
 								{{asset.CHILD_COUNT}}

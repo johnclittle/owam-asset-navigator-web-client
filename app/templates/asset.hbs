@@ -1,6 +1,16 @@
 <div class="row">
 	<div class="col-xs-12">
-		<h3>Asset: {{model.asset.ASSET_ID}}</h3>
+		<ul class="breadcrumb">
+		    <li><a href="#">Home</a></li>
+		    <li><a href="#">Products</a></li>
+		    <li class="active">Accessories</li>
+		</ul>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<h3><strong>Asset:</strong> {{model.asset.ASSET_RECORD_TYPE}}/{{model.asset.ASSET_ID}}</h3>
+		<h3><strong>Description:</strong> {{model.asset.ASSET_DESC}}</h3>
 	</div>
 </div>
 <hr />
@@ -9,28 +19,32 @@
 		<table class="table table-bordered table-condensed">
 			<tbody>
 				<tr>
-					<td><strong>Title</strong></td>
-					<td>Value</td>
-					<td><strong>Title</strong></td>
-					<td>Value</td>
+					<td><strong>Status</strong></td>
+					<td>{{model.asset.ASSET_STATUS}}</td>
+					<td><strong>Criticality</strong></td>
+					<td>{{model.asset.CRITICALITY}}</td>
 				</tr>
 				<tr>
-					<td><strong>Title</strong></td>
-					<td>Value</td>
-					<td><strong>Title</strong></td>
-					<td>Value</td>
+					<td><strong>Asset Type</strong></td>
+					<td>{{model.asset.ASSET_TYPE}}</td>
+					<td><strong>Parent Asset</strong></td>
+					<td>{{model.asset.PARENT_ASSET_ID}}</td>
 				</tr>
 				<tr>
-					<td><strong>Title</strong></td>
-					<td>Value</td>
-					<td><strong>Title</strong></td>
-					<td>Value</td>
+					<td><strong>Asset Class</strong></td>
+					<td>{{model.asset.CLASS}}</td>
+					<td><strong>Process</strong></td>
+					<td>{{model.asset.PROCESS_NO}}</td>
 				</tr>
 				<tr>
-					<td><strong>Title</strong></td>
-					<td>Value</td>
-					<td><strong>Title</strong></td>
-					<td>Value</td>
+					<td><strong>BOM ID</strong></td>
+					<td>{{model.asset.BOM_ID}}</td>
+					<td><strong>Specification</strong></td>
+					<td>{{model.asset.SPECIFICATION_NO}}</td>
+				</tr>
+				<tr>
+					<td ><strong>Location</strong></td>
+					<td colspan="3">{{model.asset.LOCATION}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -38,10 +52,8 @@
 </div>
 
 <div class="row">
-	<div class="col-xs-12">
-		<h4>Costs</h4>
-	</div>
 	<div class="col-xs-6">
+		<h4>Costs</h4>
 		<table class="table table-bordered table-condensed">
 			<tbody>
 				{{#each model.cost as |cost|}}
@@ -63,15 +75,62 @@
 		</table>
 	</div>
 	<div class="col-xs-6">
-		<h5>Chart Me</h5>
+		<h4>Costs Graph</h4>
+		{{cost-chart data=model.cost }}
 	</div>
 </div>
 <hr/>
 
-<h3>Children Count: {{model.asset.CHILD_COUNT}}</h3>
-{{#each model.children as |asset|}}
-  <h4>{{#link-to "asset" asset.ASSET_ID }}{{asset.ASSET_ID}}{{/link-to}}</h4>
-{{/each}}
+
+<div class="row">
+	
+	<div class="col-xs-12">
+		<h4>Child Assets of {{model.asset.ASSET_RECORD_TYPE}}/{{model.asset.ASSET_ID}} ({{model.asset.CHILD_COUNT}})</h4>
+	</div>
+	<div class="col-xs-12">
+	{{#each model.children as |assets|}}
+		<h5>{{assets.type}}</h5>
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>Asset</th>
+					<th>Child Asset Count</th>
+					<th>Asset Description</th>
+					<th>Location</th>
+					<th>Work Request Count</th>
+					<th>Work Order Count</th>
+				</tr>
+			</thead>
+			{{#each assets.assets as |asset|}}
+					<tbody>
+						<tr>
+							<td>
+								{{#link-to "asset" asset.ASSET_ID }}{{asset.ASSET_RECORD_TYPE}}/{{asset.ASSET_ID}}{{/link-to}}
+							</td>
+							<td>
+								{{asset.CHILD_COUNT}}
+							</td>
+							<td>
+								{{asset.ASSET_DESC}}
+							</td>
+							<td>
+								{{asset.LOCATION}}
+							</td>
+							<td>
+								{{asset.OPEN_WR_COUNT}}
+							</td>
+							<td>
+								{{asset.OPEN_WO_COUNT}}
+							</td>
+						</tr>
+
+					</tbody>
+			{{/each}}
+		</table>
+	{{/each}}
+	<\hr>
+	</div>
+</div>
 
 
 {{outlet}}
