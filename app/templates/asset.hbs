@@ -1,0 +1,77 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h3>Asset: {{model.asset.ASSET_ID}}</h3>
+	</div>
+</div>
+<hr />
+<div class="row">
+	<div class="col-xs-12">
+		<table class="table table-bordered table-condensed">
+			<tbody>
+				<tr>
+					<td><strong>Title</strong></td>
+					<td>Value</td>
+					<td><strong>Title</strong></td>
+					<td>Value</td>
+				</tr>
+				<tr>
+					<td><strong>Title</strong></td>
+					<td>Value</td>
+					<td><strong>Title</strong></td>
+					<td>Value</td>
+				</tr>
+				<tr>
+					<td><strong>Title</strong></td>
+					<td>Value</td>
+					<td><strong>Title</strong></td>
+					<td>Value</td>
+				</tr>
+				<tr>
+					<td><strong>Title</strong></td>
+					<td>Value</td>
+					<td><strong>Title</strong></td>
+					<td>Value</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<h4>Costs</h4>
+	</div>
+	<div class="col-xs-6">
+		<table class="table table-bordered table-condensed">
+			<tbody>
+				{{#each model.cost as |cost|}}
+				<tr>
+					<td colspan="2">
+						<strong>{{cost.PERIOD_YEAR}}</strong>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Direct Cost</strong></td>
+					<td>{{cost.DIRECT_COST}}</td>
+				</tr>
+				<tr>
+					<td><strong>Child Cost</strong></td>
+					<td>{{cost.CHILD_COST}}</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+	<div class="col-xs-6">
+		<h5>Chart Me</h5>
+	</div>
+</div>
+<hr/>
+
+<h3>Children Count: {{model.asset.CHILD_COUNT}}</h3>
+{{#each model.children as |asset|}}
+  <h4>{{#link-to "asset" asset.ASSET_ID }}{{asset.ASSET_ID}}{{/link-to}}</h4>
+{{/each}}
+
+
+{{outlet}}

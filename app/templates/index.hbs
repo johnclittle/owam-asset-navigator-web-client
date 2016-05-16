@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<h1>Root Assets</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+	{{#each model as |assets|}}
+		<h2>{{assets.type}}</h2>
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>Asset</th>
+					<th>Child Asset Count</th>
+					<th>Asset Description</th>
+					<th>Location</th>
+					<th>Work Request Count</th>
+					<th>Work Order Count</th>
+				</tr>
+			</thead>
+			{{#each assets.assets as |asset|}}
+					<tbody>
+						<tr>
+							<td>
+								{{#link-to "asset" asset.ASSET_ID }}{{asset.ASSET_ID}}{{/link-to}}
+							</td>
+							<td>
+								{{asset.CHILD_COUNT}}
+							</td>
+							<td>
+								{{asset.ASSET_DESC}}
+							</td>
+							<td>
+								{{asset.LOCATION}}
+							</td>
+							<td>
+								{{asset.OPEN_WR_COUNT}}
+							</td>
+							<td>
+								{{asset.OPEN_WO_COUNT}}
+							</td>
+						</tr>
+
+					</tbody>
+			{{/each}}
+		</table>
+	{{/each}}
+	<\hr>
+	</div>
+</div>
+
+
+
+
