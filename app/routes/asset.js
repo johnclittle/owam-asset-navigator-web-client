@@ -39,6 +39,13 @@ export default Ember.Route.extend({
 					// console.log(result);
 					resolve(result);
 				})
+			}),
+			parents: new Ember.RSVP.Promise(function(resolve){
+				Ember.$.getJSON("http://localhost:3000/assets/" + params.asset_id + "/parents" , function(data){
+					var result = data.toArray().reverse();
+					// console.log(result);
+					resolve(result);
+				})
 			})
 		});
 	}

@@ -1,9 +1,10 @@
 <div class="row">
 	<div class="col-xs-12">
 		<ul class="breadcrumb">
-		    <li><a href="#">Home</a></li>
-		    <li><a href="#">Products</a></li>
-		    <li class="active">Accessories</li>
+			<li><a href="#">Home</a></li>
+			{{#each model.parents as |parent|}}
+				<li>{{#link-to "asset" parent.ASSET_ID }}{{parent.ASSET_RECORD_TYPE}}/{{parent.ASSET_ID}}{{/link-to}}</li>
+		   	{{/each}}
 		</ul>
 	</div>
 </div>
@@ -50,7 +51,7 @@
 		</table>
 	</div>
 </div>
-
+{{# if model.cost }}
 <div class="row">
 	<div class="col-xs-6">
 		<h4>Costs</h4>
@@ -73,15 +74,23 @@
 				{{/each}}
 			</tbody>
 		</table>
+
 	</div>
 	<div class="col-xs-6">
 		<h4>Costs Graph</h4>
 		{{cost-chart data=model.cost }}
 	</div>
 </div>
+{{else}}
+<div class="row">
+	<div class="col-xs-6">
+		<h4>No Cost Information</h4>
+	</div>
+</div>
+{{/if}}
 <hr/>
 
-
+{{# if model.asset.CHILD_COUNT }}
 <div class="row">
 	
 	<div class="col-xs-12">
@@ -132,5 +141,10 @@
 	</div>
 </div>
 
-
-{{outlet}}
+{{else}}
+<div class="row">
+	<div class="col-xs-6">
+		<h4>No Child Assets</h4>
+	</div>
+</div>
+{{/if}}
