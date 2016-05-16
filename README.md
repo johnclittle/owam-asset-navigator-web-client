@@ -1,7 +1,12 @@
-# Owam-asset-navigator-web-client
+# owam-asset-navigator-server
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+## <a name="about"></a> About owam-asset-navigator-web-client
+
+An example application capable of producing a front end client that is similar to the asset navigator user interface found in the  [ Oracle WAM 1.9.x system](http://www.oracle.com/us/products/applications/utilities/business-solutions/work-asset-management/overview/index.html).
+
+This example was presented at the [MAY 2016 ORACLE Work and Asset Management (WAM) Users Group Conference Call](http://ouug.org/wam/).
+
+This example uses the  [owam-asset-navigator-server](https://github.com/johnclittle/owam-asset-navigator-server).
 
 ## Prerequisites
 
@@ -39,9 +44,6 @@ Make use of the many generators for code, try `ember help generate` for more det
 * `ember build` (development)
 * `ember build --environment production` (production)
 
-### Deploying
-
-Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 
