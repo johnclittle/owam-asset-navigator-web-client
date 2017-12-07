@@ -1,4 +1,4 @@
-# owam-asset-navigator-server
+# owam-asset-navigator-client
 
 ## <a name="about"></a> About owam-asset-navigator-web-client
 
